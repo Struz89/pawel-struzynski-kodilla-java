@@ -3,6 +3,7 @@ package com.kodilla.testing.weather.mock;
 import com.kodilla.testing.weather.stub.Temperatures;
 import com.kodilla.testing.weather.stub.WeatherForecast;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -13,10 +14,10 @@ import static org.mockito.Mockito.when;
 
 class WeatherForecastTestSuite {
 
-    @Test
-    void testCalculateForecastWithMock() {
-        //Given
-        Temperatures temperaturesMock = mock(Temperatures.class);
+    Temperatures temperaturesMock = mock(Temperatures.class);
+
+    @BeforeEach
+    public void before() {
         Map<String, Double> temperaturesMap = new HashMap<>();
         temperaturesMap.put("Rzeszow", 25.5);
         temperaturesMap.put("Krakow", 26.2);
@@ -24,6 +25,11 @@ class WeatherForecastTestSuite {
         temperaturesMap.put("Warszawa", 25.2);
         temperaturesMap.put("Gdansk", 26.1);
         when(temperaturesMock.getTemperatures()).thenReturn(temperaturesMap);
+    }
+
+    @Test
+    void testCalculateForecastWithMock() {
+        //Given
         WeatherForecast weatherForecast = new WeatherForecast(temperaturesMock);
 
         //When
@@ -32,4 +38,29 @@ class WeatherForecastTestSuite {
         //Then
         Assertions.assertEquals(5, quantityOfSensors);
     }
+
+    @Test
+    void testCalculateAvarageWithMock() {
+        //Given
+        WeatherForecast weatherForecast = new WeatherForecast(temperaturesMock);
+
+        //When
+        double avarage = weatherForecast.calculateAvarage();
+
+        //Then
+        Assertions.assertEquals(25.56, avarage);
+    }
+
+    @Test
+    void testCalculateMedianWithMock() {
+        //Given
+        WeatherForecast weatherForecast = new WeatherForecast(temperaturesMock);
+
+        //When
+        double median = weatherForecast.calculateMedian();
+
+        //Then
+        Assertions.assertEquals(26.1, median);
+    }
+
 }
