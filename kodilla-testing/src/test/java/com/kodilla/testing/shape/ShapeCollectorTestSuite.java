@@ -60,7 +60,7 @@ public class ShapeCollectorTestSuite {
             shapeCollector.addFigure(new Circle());
             shapeCollector.addFigure(new Square());
             shapeCollector.addFigure(new Triangle());
-            String shape = shapeCollector.getFigure(2);
+            Shape shape = shapeCollector.getFigure(2);
 
             //Then
             Assertions.assertEquals(3, array.size());
@@ -80,11 +80,11 @@ public class ShapeCollectorTestSuite {
             shapeCollector.addFigure(new Circle());
             shapeCollector.addFigure(new Square());
             shapeCollector.addFigure(new Triangle());
-            String shape = shapeCollector.getFigure(-1);
+            Shape shape = shapeCollector.getFigure(-1);
 
             //Then
             Assertions.assertEquals(3, array.size());
-            Assertions.assertEquals("You cannot enter a value less than zero!", shape);
+            Assertions.assertNull(shape);
 
         }
 
@@ -100,11 +100,11 @@ public class ShapeCollectorTestSuite {
             shapeCollector.addFigure(new Circle());
             shapeCollector.addFigure(new Square());
             shapeCollector.addFigure(new Triangle());
-            String shape = shapeCollector.getFigure(3);
+            Shape shape = shapeCollector.getFigure(3);
 
             //Then
             Assertions.assertEquals(3, array.size());
-            Assertions.assertEquals("There are not so many items in the list!", shape);
+            Assertions.assertNull(shape);
 
         }
 

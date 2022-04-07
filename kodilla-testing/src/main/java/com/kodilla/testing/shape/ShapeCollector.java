@@ -19,13 +19,13 @@ public class ShapeCollector {
         array.remove(shape);
     }
 
-    public String getFigure(int n) {
+    public Shape getFigure(int n) {
         if (array.size()-1<n) {
-            return "There are not so many items in the list!";
+            return null;
         } else if (n<0) {
-            return "You cannot enter a value less than zero!";
+            return null;
         } else {
-            return array.get(n).toString();
+            return array.get(n);
         }
     }
 
