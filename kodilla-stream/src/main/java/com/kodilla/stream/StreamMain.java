@@ -1,40 +1,42 @@
 package com.kodilla.stream;
 
-import com.kodilla.stream.beautifier.PoemBeautifier;
-import com.kodilla.stream.beautifier.PoemDecorator;
-import com.kodilla.stream.iterate.NumbersGenerator;
-import com.kodilla.stream.lambda.ExpressionExecutor;
-import com.kodilla.stream.reference.FunctionalCalculator;
+import com.kodilla.stream.forumuser.Forum;
+import com.kodilla.stream.forumuser.ForumUser;
 
-import java.util.Locale;
-
-import static jdk.nashorn.internal.objects.NativeString.toUpperCase;
+import java.time.LocalDate;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class StreamMain {
 
     public static void main(String[] args) {
-        ExpressionExecutor expressionExecutor = new ExpressionExecutor();
 
-        System.out.println("Calculating expressions with lambdas");
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a + b);
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a - b);
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a * b);
-        expressionExecutor.executeExpression(10, 5, (a, b) -> a / b);
+        Forum forum = new Forum();
 
-        System.out.println("Calculating expressions with method references");
-        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::multiplyAByB);
-        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::addAToB);
-        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::subBFromA);
-        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::divideAByB);
+        Map<String,ForumUser> theResultMapOfUsersSexM = forum.getUserList().stream()
+                .filter(forumUser -> forumUser.getSex() == 'M')
+                .collect(Collectors.toMap(ForumUser::getUsername, forumUser -> forumUser));
 
-        PoemBeautifier poemBeautifier = new PoemBeautifier();
-        poemBeautifier.beautify("Marta", (text -> toUpperCase(text)));
-        poemBeautifier.beautify("Marta", (text -> "ABC" + text + "ABC"));
-        poemBeautifier.beautify("Marta", (text -> text.substring(3)));
-        poemBeautifier.beautify("Marta",(text -> text.toLowerCase(Locale.forLanguageTag(text))));
-        poemBeautifier.beautify("Marta",(text -> text.replaceFirst("a","b")));
+        System.out.println(theResultMapOfUsersSexM);
 
-        System.out.println("Using Stream to generate even numbers from 1 to 20");
-        NumbersGenerator.generateEven(20);
+        Map<String,ForumUser> theResultMapOfUsersAbove20 = forum.getUserList().stream()
+                .filter(forumUser -> forumUser.getDate().getYear() < LocalDate.now().getYear() - 20)
+                .collect(Collectors.toMap(ForumUser::getUsername, forumUser -> forumUser));
+
+        System.out.println(theResultMapOfUsersAbove20);
+
+        Map<String,ForumUser> theResultMapOfUsersPostsAbove1 = forum.getUserList().stream()
+                .filter(forumUser -> forumUser.getPosts() >= 1)
+                .collect(Collectors.toMap(ForumUser::getUsername, forumUser -> forumUser));
+
+        System.out.println(theResultMapOfUsersPostsAbove1);
+
+        Map<Integer,ForumUser> theResultMapOfUsersIdUserAsKey = forum.getUserList().stream()
+                .collect(Collectors.toMap(ForumUser::getIdUser, forumUser -> forumUser));
+
+        theResultMapOfUsersIdUserAsKey.entrySet().stream()
+                .map(entry -> entry.getKey() + ": " + entry.getValue())
+                .forEach(System.out::println);
+
     }
 }
