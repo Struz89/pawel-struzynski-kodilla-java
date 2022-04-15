@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WorldTestSuite {
 
@@ -14,11 +15,21 @@ public class WorldTestSuite {
         World world = new World();
 
         // When
-        world.addCountriesAndContinents(new Continent(Arrays.asList(new Country("Poland", new BigDecimal("211111110903703703670"))), "Europe"));
-        world.addCountriesAndContinents(new Continent(Arrays.asList(new Country("England", new BigDecimal("211111110903703703670"))), "Europe"));
+        List<Country> countryListEurope = new ArrayList<>();
+        List<Country> countryListAsia = new ArrayList<>();
+        List<Country> countryListAfrica = new ArrayList<>();
+        countryListEurope.add(new Country("Poland", new BigDecimal("211111110903703703670")));
+        countryListEurope.add(new Country("England", new BigDecimal("211111110903703703670")));
+        countryListAsia.add(new Country("Vietnam", new BigDecimal("211111110903703703670")));
+        countryListAsia.add(new Country("Thailand", new BigDecimal("211111110903703703670")));
+        countryListAfrica.add(new Country("Senegal", new BigDecimal("211111110903703703670")));
+        countryListAfrica.add(new Country("Nigeria", new BigDecimal("211111110903703703670")));
+        world.addCountriesAndContinents(new Continent(countryListEurope, "Europe"));
+        world.addCountriesAndContinents(new Continent(countryListAsia, "Asia"));
+        world.addCountriesAndContinents(new Continent(countryListAfrica, "Africa"));
 
         // Then
-        Assertions.assertEquals(100,world.getPeopleQuantity());
+        Assertions.assertEquals(new BigDecimal("1266666665422222222020"),world.getPeopleQuantity());
 
     }
 
