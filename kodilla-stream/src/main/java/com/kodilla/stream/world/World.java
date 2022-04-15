@@ -1,13 +1,8 @@
 package com.kodilla.stream.world;
 
-import com.kodilla.stream.invoice.simple.SimpleItem;
-import com.kodilla.stream.sand.SandStorage;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class World {
 
