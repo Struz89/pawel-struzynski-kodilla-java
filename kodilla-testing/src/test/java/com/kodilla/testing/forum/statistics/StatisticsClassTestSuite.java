@@ -6,10 +6,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class StatisticsClassTestSuite {
@@ -28,6 +30,8 @@ public class StatisticsClassTestSuite {
     @Test
     void testUsersEqualTo0() {
         // Given
+        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
         StatisticsClass statisticsClass = new StatisticsClass();
         List<String> userName = new ArrayList<>();
         when(statisticsMock.usersNames()).thenReturn(userName);
@@ -36,13 +40,15 @@ public class StatisticsClassTestSuite {
         statisticsClass.calculateAdvStatistics(statisticsMock);
 
         // Then
-        Assertions.assertTrue(true,"0.0");
+        Assertions.assertEquals("0.0", outContent.toString());
 
     }
 
     @Test
     void testUsersEqualTo100() {
         // Given
+        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
         StatisticsClass statisticsClass = new StatisticsClass();
         List<String> userName = generateUsers("Pablo", 100);
         when(statisticsMock.usersNames()).thenReturn(userName);
@@ -51,13 +57,15 @@ public class StatisticsClassTestSuite {
         statisticsClass.calculateAdvStatistics(statisticsMock);
 
         // Then
-        Assertions.assertTrue(true, "100.0");
+        Assertions.assertEquals("100.0", outContent.toString());
 
     }
 
     @Test
     void testPostsEqualTo0() {
         // Given
+        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
         StatisticsClass statisticsClass = new StatisticsClass();
         when(statisticsMock.postsCount()).thenReturn(0);
 
@@ -65,13 +73,15 @@ public class StatisticsClassTestSuite {
         statisticsClass.calculateAdvStatistics(statisticsMock);
 
         // Then
-        Assertions.assertTrue(true,"0.0");
+        Assertions.assertEquals("0.0", outContent.toString());
 
     }
 
     @Test
     void testPostsEqualTo1000() {
         // Given
+        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
         StatisticsClass statisticsClass = new StatisticsClass();
         when(statisticsMock.postsCount()).thenReturn(1000);
 
@@ -79,13 +89,15 @@ public class StatisticsClassTestSuite {
         statisticsClass.calculateAdvStatistics(statisticsMock);
 
         // Then
-        Assertions.assertTrue(true,"1000.0");
+        Assertions.assertEquals("1000.0", outContent.toString());
 
     }
 
     @Test
     void testCommentsEqualTo0() {
         // Given
+        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
         StatisticsClass statisticsClass = new StatisticsClass();
         when(statisticsMock.commentsCount()).thenReturn(0);
 
@@ -93,13 +105,15 @@ public class StatisticsClassTestSuite {
         statisticsClass.calculateAdvStatistics(statisticsMock);
 
         // Then
-        Assertions.assertTrue(true,"0.0");
+        Assertions.assertEquals("0.0", outContent.toString());
 
     }
 
     @Test
     void testCommentsEqualTo100() {
         // Given
+        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
         StatisticsClass statisticsClass = new StatisticsClass();
         when(statisticsMock.commentsCount()).thenReturn(100);
 
@@ -107,13 +121,15 @@ public class StatisticsClassTestSuite {
         statisticsClass.calculateAdvStatistics(statisticsMock);
 
         // Then
-        Assertions.assertTrue(true,"100.0");
+        Assertions.assertEquals("100.0", outContent.toString());
 
     }
 
     @Test
     void testAveragePostsPerUsers() {
         // Given
+        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
         StatisticsClass statisticsClass = new StatisticsClass();
         List<String> userName = generateUsers("Pablo", 10);
         when(statisticsMock.usersNames()).thenReturn(userName);
@@ -123,13 +139,15 @@ public class StatisticsClassTestSuite {
         statisticsClass.calculateAdvStatistics(statisticsMock);
 
         // Then
-        Assertions.assertTrue(true,"100.0");
+        Assertions.assertEquals("100.0", outContent.toString());
 
     }
 
     @Test
     void testAverageCommentsPerUsers() {
         // Given
+        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
         StatisticsClass statisticsClass = new StatisticsClass();
         List<String> userName = generateUsers("Pablo", 10);
         when(statisticsMock.usersNames()).thenReturn(userName);
@@ -139,13 +157,15 @@ public class StatisticsClassTestSuite {
         statisticsClass.calculateAdvStatistics(statisticsMock);
 
         // Then
-        Assertions.assertTrue(true,"100.0");
+        Assertions.assertEquals("100.0", outContent.toString());
 
     }
 
     @Test
     void testAverageCommentsPerPosts() {
         // Given
+        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
         StatisticsClass statisticsClass = new StatisticsClass();
         when(statisticsMock.postsCount()).thenReturn(1000);
         when(statisticsMock.commentsCount()).thenReturn(1000);
@@ -154,13 +174,15 @@ public class StatisticsClassTestSuite {
         statisticsClass.calculateAdvStatistics(statisticsMock);
 
         // Then
-        Assertions.assertTrue(true,"1.0");
+        Assertions.assertEquals("1.0", outContent.toString());
 
     }
 
     @Test
     void testSumUsersCommentsAndPosts() {
         // Given
+        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
         StatisticsClass statisticsClass = new StatisticsClass();
         List<String> userName = generateUsers("Pablo", 10);
         when(statisticsMock.usersNames()).thenReturn(userName);
@@ -171,7 +193,7 @@ public class StatisticsClassTestSuite {
         statisticsClass.calculateAdvStatistics(statisticsMock);
 
         // Then
-        Assertions.assertTrue(true,"2010");
+        Assertions.assertEquals("2010.0", outContent.toString());
 
     }
 

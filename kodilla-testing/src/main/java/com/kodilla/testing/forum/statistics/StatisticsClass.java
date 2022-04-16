@@ -13,29 +13,29 @@ public class StatisticsClass {
     public void calculateAdvStatistics(Statistics statistics) {
         if (statistics.usersNames().size() > 0 && statistics.postsCount() == 0 && statistics.commentsCount() == 0) {
             users = statistics.usersNames().size();
-            System.out.println(users);
+            System.out.print(users);
         } else if (statistics.postsCount() > 0 && statistics.usersNames().size() == 0 && statistics.commentsCount() == 0) {
             posts = statistics.postsCount();
-            System.out.println(posts);
+            System.out.print(posts);
         } else if (statistics.commentsCount() > 0 && statistics.usersNames().size() == 0 && statistics.postsCount() == 0) {
             comments = statistics.commentsCount();
-            System.out.println(comments);
+            System.out.print(comments);
         } else if (statistics.usersNames().size() > 0 && statistics.postsCount() > 0 && statistics.commentsCount() == 0) {
             averagePostsPerUsers = statistics.postsCount()/statistics.usersNames().size();
-            System.out.println(averagePostsPerUsers);
+            System.out.print(averagePostsPerUsers);
         } else if (statistics.usersNames().size() > 0 && statistics.postsCount() == 0 && statistics.commentsCount() > 0) {
             averageCommentsPerUsers = statistics.commentsCount()/statistics.usersNames().size();
-            System.out.println(averageCommentsPerUsers);
+            System.out.print(averageCommentsPerUsers);
         } else if (statistics.usersNames().size() == 0 && statistics.postsCount() > 0 && statistics.commentsCount() > 0) {
             averageCommentsPerPosts = statistics.commentsCount()/statistics.postsCount();
-            System.out.println(averageCommentsPerPosts);
+            System.out.print(averageCommentsPerPosts);
         } else if (statistics.usersNames().size() > 0 && statistics.postsCount() > 0 && statistics.commentsCount() > 0) {
             users = statistics.usersNames().size();
             posts = statistics.postsCount();
             comments = statistics.commentsCount();
-            System.out.println(users + posts + comments);
+            System.out.print(users + posts + comments);
         } else {
-            System.out.println("0.0");
+            System.out.print("0.0");
         }
         
     }
