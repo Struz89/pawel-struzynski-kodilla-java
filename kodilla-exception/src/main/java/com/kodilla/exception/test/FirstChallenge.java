@@ -5,14 +5,10 @@ import java.util.Date;
 public class FirstChallenge {
 
     public double divide(double a, double b) throws ArithmeticException {
-
-        try {
-            return a / b;
-        } catch (Exception e) {
+        if (b == 0) {
             throw new ArithmeticException();
-        } finally {
-            System.out.println(new Date());
         }
+        return a / b;
     }
 
     /**
@@ -20,9 +16,15 @@ public class FirstChallenge {
      * @param args
      */
     public static void main(String[] args) {
-        FirstChallenge firstChallenge = new FirstChallenge();
-        double result = firstChallenge.divide(3, 0);
+        try {
+            FirstChallenge firstChallenge = new FirstChallenge();
+            double result = firstChallenge.divide(3, 0);
 
-        System.out.println(result);
+            System.out.println(result);
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            System.out.println(new Date());
+        }
     }
 }
