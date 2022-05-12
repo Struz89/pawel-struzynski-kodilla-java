@@ -2,9 +2,9 @@ package com.kodilla.good.patterns.challenges;
 
 public class ProductOrderRequest {
 
-    public User user;
-    public String dateTime;
-    public String product;
+    private User user;
+    private String dateTime;
+    private String product;
 
     public ProductOrderRequest (final User user, final String dateTime, final String product) {
         this.user = user;
