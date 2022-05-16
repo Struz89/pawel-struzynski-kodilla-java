@@ -4,14 +4,9 @@ public class ProductOrderServices implements OrderService {
 
     @Override
     public boolean order(Producer producer, Integer quantity, String dateTime) {
-        if (producer.getProducer() != null) {
-            System.out.println("Producer: " + producer.getProducer()
-                    + "," + " product: " + producer.getProductName() + "," + " quantity: " + quantity
+            System.out.println("Producer: " + producer.getProducerName()
+                    + "," + " product: " + producer.getProducts() + "," + " quantity: " + quantity
                     + "," + " date: " + dateTime);
             return true;
-        } else {
-            System.out.println(producer.getAnnouncement());
-            return false;
-        }
     }
 }
