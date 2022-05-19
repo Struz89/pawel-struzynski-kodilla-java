@@ -1,35 +1,50 @@
 package com.kodilla.good.patterns.challenges.flightservice;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class FlightCenter {
 
-    Map<String,String> flightMap;
+    private Set<Flight> flights = new HashSet<>();
+
+    public void flightFrom(TownEnum townEnum) {
+        flights.stream()
+                .filter(departure -> departure.getDeparture().equals(townEnum))
+                .map(Flight::getArrival)
+                .forEach(System.out::println);
+
+    }
+
+    public void flightTo(TownEnum townEnum) {
+        flights.stream()
+                .filter(arrival -> arrival.getArrival().equals(townEnum))
+                .map(Flight::getDeparture)
+                .forEach(System.out::println);
+
+    }
+
+    public void flightFromTo(TownEnum townEnumDeparture, TownEnum townEnumArrival) {
+        for (Flight flight1 : flights) {
+            if (flight1.getDeparture().equals(townEnumDeparture) && flight1.getArrival().equals(townEnumArrival)) {
+                System.out.println("Istnieje połącznie: " + flight1.getDeparture() + "-" + flight1.getArrival());
+            } else if (flight1.getDeparture().equals(townEnumDeparture)) {
+                TownEnum throughTown = flight1.getArrival();
+                for (Flight flight2 : flights) {
+                    if (flight2.getDeparture().equals(throughTown) && flight2.getArrival().equals(townEnumArrival)) {
+                        System.out.println("Istnieje połączenie: " + flight1.getDeparture() + "-"
+                        + flight2.getDeparture() + "-" + flight2.getArrival());
+                    }
+                }
+            }
+        }
+    }
 
     public FlightCenter() {
-        flightMap = new HashMap<>();
-        flightMap.put("Gdańsk", "Warszawa");
-        flightMap.put("Warszawa", "Bydgoszcz");
-        flightMap.put("Bydgoszcz", "Wrocław");
-        flightMap.put("Wrocław", "Poznań");
-    }
-
-    public Map<String, String> getFlightMap() {
-        return flightMap;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        FlightCenter that = (FlightCenter) o;
-        return Objects.equals(flightMap, that.flightMap);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(flightMap);
+        flights.add(new Flight(TownEnum.WARSZAWA, TownEnum.GDANSK,
+                LocalDateTime.of(2022,05,19,10,10)));
+        flights.add(new Flight(TownEnum.POZNAN, TownEnum.WROCLAW,
+                LocalDateTime.of(2022,05,19,16,10)));
+        flights.add(new Flight(TownEnum.GDANSK, TownEnum.POZNAN,
+                LocalDateTime.of(2022,05,19,22,10)));
     }
 }

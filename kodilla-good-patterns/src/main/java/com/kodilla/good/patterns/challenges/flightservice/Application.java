@@ -3,9 +3,9 @@ package com.kodilla.good.patterns.challenges.flightservice;
 public class Application {
 
     public static void main(String[] args) {
-        FlightService flightService = new FlightService();
-        flightService.flightsFrom("Gdańsk");
-        flightService.flightsTo("Bydgoszcz");
-        flightService.flightsFromTo("Poznań", "Wrocław");
+        FlightCenter flightCenter = new FlightCenter();
+        flightCenter.flightFrom(TownEnum.POZNAN);
+        flightCenter.flightTo(TownEnum.GDANSK);
+        flightCenter.flightFromTo(TownEnum.WARSZAWA, TownEnum.POZNAN);
     }
 }
