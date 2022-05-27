@@ -6,6 +6,8 @@ public class DrivingTask implements Task{
     private final String where;
     private final String using;
 
+    private boolean isExecuted = false;
+
     public DrivingTask(String taskName, String where, String using) {
         this.taskName = taskName;
         this.where = where;
@@ -13,8 +15,8 @@ public class DrivingTask implements Task{
     }
 
     @Override
-    public void executeTask() {
-        System.out.println("DrivingTask in progress");
+    public boolean executeTask() {
+        return isExecuted = true;
     }
 
     @Override
@@ -24,6 +26,6 @@ public class DrivingTask implements Task{
 
     @Override
     public boolean isTaskExecuted() {
-        return false;
+        return executeTask();
     }
 }

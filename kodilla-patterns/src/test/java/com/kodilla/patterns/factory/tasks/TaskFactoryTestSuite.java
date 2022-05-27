@@ -27,7 +27,7 @@ public class TaskFactoryTestSuite {
         Task drivingTask = taskFactory.informationAboutTask(TaskFactory.DRIVINGTASK);
 
         //Then
-        Assertions.assertEquals(false,drivingTask.isTaskExecuted());
+        Assertions.assertEquals(true,drivingTask.isTaskExecuted());
         Assertions.assertEquals("Drive", drivingTask.getTaskName());
     }
 
@@ -40,7 +40,7 @@ public class TaskFactoryTestSuite {
         Task paintingTask = taskFactory.informationAboutTask(TaskFactory.PAINTINGTASK);
 
         //Then
-        Assertions.assertEquals(false, paintingTask.isTaskExecuted());
+        Assertions.assertEquals(true, paintingTask.isTaskExecuted());
         Assertions.assertEquals("Paint", paintingTask.getTaskName());
     }
 
