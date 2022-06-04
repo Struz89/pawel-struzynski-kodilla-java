@@ -1,0 +1,12 @@
+SELECT I.SUMMARY, I.DESCRIPTION, IL.NAME
+From issues i
+join issueslists il on i.ISSUESLIST_ID = il.ID;
+
+SELECT I.SUMMARY, I.DESCRIPTION, U.FIRSTNAME, U.LASTNAME
+From issues i
+join users u on i.USER_ID_ASSIGNEDTO = u.ID;
+
+SELECT U.FIRSTNAME, U.LASTNAME, count(*) as QUANTITY_TASKS
+From users u
+join issues i on u.ID = i.USER_ID_ASSIGNEDTO
+group by i.USER_ID_ASSIGNEDTO;
