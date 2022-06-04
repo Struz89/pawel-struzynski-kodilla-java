@@ -1,0 +1,34 @@
+CREATE TABLE ISSUESLISTS 
+( ID serial primary key,
+NAME varchar(100));
+
+CREATE TABLE ISSUES
+( ID SERIAL primary key,
+ISSUESLIST_ID bigint unsigned not null,
+SUMMARY varchar(100),
+DESCRIPTION varchar(100),
+USER_ID_ASSIGNEDTO bigint unsigned not null,
+foreign key (ISSUESLIST_ID) references issueslists(ID),
+foreign key (USER_ID_ASSIGNEDTO) references users(ID));
+
+INSERT INTO issueslists values (1, "ToDo");
+INSERT INTO issueslists values (2, "InProgress");
+INSERT INTO issueslists values (3, "Done");
+
+INSERT INTO issues values (1, 1, "Sprzątanie mieszkania", "Odkurzanie", 1);
+INSERT INTO issues values (2, 1, "Gotowanie i robienie zakupów", "Zrobienie drugiego śniadanie", 2); 
+INSERT INTO issues values (3, 1, "Sprzątanie mieszkania", "Pranie ubrań", 3);
+INSERT INTO issues values (4, 1, "Gotowanie i robienie zakupów", "Zrobienie podwieczorku", 4);
+INSERT INTO issues values (5, 1, "Sprzątanie mieszkania", "Ścieranie kurzy", 5);
+
+INSERT INTO issues values (6, 2, "Gotowanie i robienie zakupów", "Zrobienie śniadania", 1);
+INSERT INTO issues values (7, 2, "Sprzątanie mieszkania", "Mycie okien", 2); 
+INSERT INTO issues values (8, 2, "Gotowanie i robienie zakupów", "Zrobienie obiadu", 3);
+INSERT INTO issues values (9, 2, "Sprzątanie mieszkania", "Zmywanie naczyń", 4);
+INSERT INTO issues values (10, 2, "Gotowanie i robienie zakupów", "Zrobienie kolacji", 5);
+
+INSERT INTO issues values (11, 3, "Inne zadania", "Wyprowadzenie psa", 1);
+INSERT INTO issues values (12, 3, "Inne zadania", "Umycie samochodu", 2); 
+INSERT INTO issues values (13, 3, "Inne zadania", "Umówienie wizyty do lekarza", 3);
+INSERT INTO issues values (14, 3, "Inne zadania", "Wyjście do fryzjera", 4);
+INSERT INTO issues values (15, 3, "Inne zadania", "Pójście na mecz piłki nożnej", 5);
