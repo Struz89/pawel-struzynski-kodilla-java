@@ -1,0 +1,24 @@
+[
+{
+"nazwa_samochodu": "Chevrolet Cruze 1.6",
+"marka_samochodu": "Cruze",
+"fotel": [{
+"materiał": "skóra",
+"kolor": "biały"
+},
+{
+"materiał": "skóra",
+"kolor": "czarny"
+},
+{
+"materiał": "tkanina",
+"kolor": "niebieski"
+},
+{
+"materiał": "tkanina",
+"kolor": "czerwony"
+}
+],
+"pojemność_silnika": 1.6
+}
+]
