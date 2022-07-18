@@ -30,7 +30,7 @@ public class CompanyFacadeTestSuite {
 
         //When
         try {
-            companyFacade.retrieveCompanies("%Pow%");
+            companyFacade.retrieveCompanies();
         } catch (CompanyException e) {
         }
 
@@ -43,13 +43,13 @@ public class CompanyFacadeTestSuite {
     public void testRetrieveEmployees() {
         //Given
         Employee employee = new Employee("Jan", "Nowak");
-        Employee employee2 = new Employee("Marek", "Kowalski");
+        Employee employee2 = new Employee("Marek", "Kovalsky");
         employeeDao.save(employee);
         employeeDao.save(employee2);
 
         //When
         try {
-            companyFacade.retrieveEmployees("%Kow%");
+            companyFacade.retrieveEmployees();
         } catch (CompanyException e) {
         }
 

@@ -26,26 +26,28 @@ public class CompanyFacade {
         this.employeeDao = employeeDao;
     }
 
-    public void retrieveCompanies(String company) throws CompanyException {
-        LOGGER.info("Sprawdzamy czy istnieje w bazie firma zawierająca w nazwie: " + company);
+    public void retrieveCompanies() throws CompanyException {
         try {
-            List<Company> companiesWithName = companyDao.retrieveCompaniesWithName(company);
+            List<Company> companiesWithName = companyDao.retrieveCompaniesWithName();
             if (companiesWithName.size() == 0) {
                 LOGGER.error(CompanyException.ERROR_COMPANY);
                 throw new CompanyException(CompanyException.ERROR_COMPANY);
+            } else {
+                LOGGER.info("W bazie istnieje taka firma!");
             }
         } finally {
             LOGGER.info("Koniec sprawdzania czy dana firma występuje w bazie");
         }
     }
 
-    public void retrieveEmployees(String employee) throws CompanyException {
-        LOGGER.info("Sprawdzamy czy istnieje w bazie pracownik zawierający w nazwisku: " + employee);
+    public void retrieveEmployees() throws CompanyException {
         try {
-            List<Employee> employeesWithName = employeeDao.retrieveEmployeesWithLastname(employee);
+            List<Employee> employeesWithName = employeeDao.retrieveEmployeesWithLastname();
             if (employeesWithName.size() == 0) {
                 LOGGER.error(CompanyException.ERROR_EMPLOYEE);
                 throw new CompanyException(CompanyException.ERROR_EMPLOYEE);
+            } else {
+                LOGGER.info("W bazie istnieje taki pracownik!");
             }
         } finally {
             LOGGER.info("Koniec sprawdzania czy pracownik o danym nazwisku występuje w bazie");
