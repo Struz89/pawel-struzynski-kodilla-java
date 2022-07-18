@@ -30,7 +30,7 @@ public class CompanyFacadeTestSuite {
 
         //When
         try {
-            companyFacade.retrieveCompanies("%Pow%");
+            companyFacade.retrieveCompanies("Sof");
         } catch (CompanyException e) {
         }
 
@@ -49,7 +49,7 @@ public class CompanyFacadeTestSuite {
 
         //When
         try {
-            companyFacade.retrieveEmployees("%Kow%");
+            companyFacade.retrieveEmployees("Kow");
         } catch (CompanyException e) {
         }
 

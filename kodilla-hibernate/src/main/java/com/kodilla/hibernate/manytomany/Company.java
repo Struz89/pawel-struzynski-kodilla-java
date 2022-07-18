@@ -8,7 +8,7 @@ import java.util.List;
 @NamedNativeQuery(
         name = "Company.retrieveCompaniesWithName",
         query = "SELECT * FROM COMPANIES" +
-                " WHERE company_name LIKE :NAME",
+                " WHERE company_name LIKE (CONCAT('%',:NAME, '%'))",
         resultClass = Company.class
 )
 @Entity
