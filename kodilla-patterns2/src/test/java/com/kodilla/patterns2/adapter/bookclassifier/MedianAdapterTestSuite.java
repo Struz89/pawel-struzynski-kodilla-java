@@ -1,7 +1,7 @@
 package com.kodilla.patterns2.adapter.bookclassifier;
 
 import com.kodilla.patterns2.adapter.bookclasifier.MedianAdapter;
-import com.kodilla.patterns2.adapter.bookclasifier.libraryb.Book;
+import com.kodilla.patterns2.adapter.bookclasifier.librarya.Book;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
@@ -15,10 +15,10 @@ public class MedianAdapterTestSuite {
     public void publicationYearMedianTest() {
         //Given
         Set<Book> books = new HashSet<>();
-        books.add(new Book("Henryk Sienkiewicz", "Krzyżacy", 1920));
-        books.add(new Book("Adam Mickiewicz", "Pan Tadeusz", 1940));
-        books.add(new Book("Henryk Sienkiewicz", "W pustyni i w puszczy", 2000));
-        books.add(new Book("Zygmunt Miłoszewski", "Uwikłanie", 2001));
+        books.add(new Book("Henryk Sienkiewicz", "Krzyżacy", 1960, "1"));
+        books.add(new Book("Adam Mickiewicz", "Pan Tadeusz", 1940, "2"));
+        books.add(new Book("Henryk Sienkiewicz", "W pustyni i w puszczy", 2000, "3"));
+        books.add(new Book("Zygmunt Miłoszewski", "Uwikłanie", 2001, "4"));
         MedianAdapter medianAdapter = new MedianAdapter();
 
         //When
